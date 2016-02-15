@@ -31,16 +31,27 @@ unsigned short binExp(unsigned short b, int e, unsigned short n) {
     return ((unsigned short) ((res * y) % n));
 }
 
-void cifra(){
-    
-}
+int main(int argc, char* argv[]) {
+    int dois_bytes;
+    FILE *ptr_entrada;
+    FILE *ptr_saida;
+    int chave_privada[] = {argv[2], argv[3]};
 
-void decifra(){
-    
-}
 
-int main(int argc, char** argv) {
-    printf("Ola Mundo");
-    return (EXIT_SUCCESS);
+    ptr_entrada = fopen(argv[0], "rb");
+    ptr_saida = fopen(argv[1], "wb");
+    size_t bytes_lidos;
+
+    bytes_lidos = fread(dois_bytes, 2, 1, ptr_entrada);
+    if (bytes_lidos == 2) {
+        printf("2 bytes lidos com sucesso!");
+    } else { // error handling
+        if (feof(ptr_entrada))
+            printf("Erro: arquivo terminou inesperadamente\n");
+        else if (ferror(ptr_entrada)) {
+            perror("Erro ao ler arquivo");
+        }
+    }
+
 }
 
