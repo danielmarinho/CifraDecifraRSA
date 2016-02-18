@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/*
+ * Argumentos:
+ * - b: base da exponenciação.
+ * - e: expoente.
+ * - n: módulo (n > 1).
+ * Retorna: b^e (mod n).
+ */
+
 unsigned short binExp(unsigned short b, int e, unsigned short n) {
 
     unsigned int res = b;
