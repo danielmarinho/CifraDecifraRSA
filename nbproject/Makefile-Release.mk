@@ -35,8 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/cifra_decifra_rsa.o \
-	${OBJECTDIR}/cifra_rsa.o
+	${OBJECTDIR}/cifra_rsa.o \
+	${OBJECTDIR}/decifra_rsa.o
 
 
 # C Compiler Flags
@@ -63,15 +63,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cifradecifrarsa: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cifradecifrarsa ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/cifra_decifra_rsa.o: cifra_decifra_rsa.c 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cifra_decifra_rsa.o cifra_decifra_rsa.c
-
 ${OBJECTDIR}/cifra_rsa.o: cifra_rsa.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cifra_rsa.o cifra_rsa.c
+
+${OBJECTDIR}/decifra_rsa.o: decifra_rsa.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/decifra_rsa.o decifra_rsa.c
 
 # Subprojects
 .build-subprojects:
