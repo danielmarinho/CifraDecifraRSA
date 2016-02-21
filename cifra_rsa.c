@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 unsigned short binExp(unsigned short b, int e, unsigned short n) {
 
     unsigned int res = b;
@@ -41,30 +42,22 @@ unsigned short binExp(unsigned short b, int e, unsigned short n) {
     return ((unsigned short) ((res * y) % n));
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     int byte[1];
-    
+
     FILE *ptr_entrada;
     FILE *ptr_saida;
     char *end1;
     char *end2;
-    int chave_publica[] = {strtol(argv[3],&end1,10), strtol(argv[4],&end2,10)};
-    
+    int chave_publica[] = {strtol(argv[3], &end1, 10), strtol(argv[4], &end2, 10)};
+
     ptr_entrada = fopen(argv[1], "rb");
-    
+
     ptr_saida = fopen(argv[2], "wb");
-    
-    while(fread(byte, 1, 1, ptr_entrada)==1){
-        int c[1] = {binExp(byte[0],chave_publica[1],chave_publica[0])};
-        fwrite(c,2,1,ptr_saida);
+
+    while (fread(byte, 1, 1, ptr_entrada) == 1) {
+        int c[1] = {binExp(byte[0], chave_publica[1], chave_publica[0])};
+        fwrite(c, 2, 1, ptr_saida);
     }
-    if (feof(ptr_entrada))
-        printf("Erro: arquivo terminou inesperadamente\n");
-    else if (ferror(ptr_entrada)) {
-        perror("Erro ao ler arquivo");
-    }
-    
-    
-   
 }
 

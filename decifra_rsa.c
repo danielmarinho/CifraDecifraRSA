@@ -32,31 +32,20 @@ unsigned short binExp(unsigned short b, int e, unsigned short n) {
 }
 
 int main(int argc, char* argv[]) {
-    int dois_bytes[2];
+    int dois_bytes[1];
     FILE *ptr_entrada;
     FILE *ptr_saida;
     char *end1;
     char *end2;
     int chave_privada[] = {strtol(argv[3], &end1, 10), strtol(argv[4], &end2, 10)};
-    printf("%d %d", chave_privada[0], chave_privada[1]);
-    printf("Hello World");
 
     ptr_entrada = fopen(argv[1], "rb");
     ptr_saida = fopen(argv[2], "wb");
-    //size_t bytes_lidos;
 
-    //bytes_lidos = fread(dois_bytes, 2, 1, ptr_entrada);
-    while (fread(dois_bytes, 2, 1, ptr_entrada) == 2) {
-        int m[2] = {binExp(dois_bytes[0],chave_privada[1],chave_privada[0]),binExp(dois_bytes[1],chave_privada[1],chave_privada[0])};
-        fwrite(m,1,1,ptr_saida);
-        
+    while (fread(dois_bytes, 2, 1, ptr_entrada) == 1) {
+        int m[1] = {binExp(dois_bytes[0], chave_privada[1], chave_privada[0])};
+        fwrite(m, 1, 1, ptr_saida);
+
     }
-
-    if (feof(ptr_entrada))
-        printf("Erro: arquivo terminou inesperadamente\n");
-    else if (ferror(ptr_entrada)) {
-        perror("Erro ao ler arquivo");
-    }
-
 }
 

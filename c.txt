@@ -1,0 +1,10 @@
+Writes count of objects in the given array buffer to the output stream stream. Objects are not interpreted in any way.
+Parameters
+buffer	-	pointer to the first object object in the array to be written
+size	-	size of each object
+count	-	the number of the objects to be written
+stream	-	pointer to the output stream
+Return value
+The number of objects written successfully.
+Example
+fwrite with error checking
