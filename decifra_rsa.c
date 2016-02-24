@@ -38,9 +38,21 @@ int main(int argc, char* argv[]) {
     char *end1;
     char *end2;
     int chave_privada[] = {strtol(argv[3], &end1, 10), strtol(argv[4], &end2, 10)};
+    long tamanho_arq;
 
     ptr_entrada = fopen(argv[1], "rb");
     ptr_saida = fopen(argv[2], "wb");
+    
+    fseek(ptr_entrada, 0L, SEEK_END);
+    tamanho_arq = ftell(ptr_entrada);
+    
+    if(tamanho_arq%2 == 1){
+        char erro [] = "Erro: arquivo não pode ter tamanho ímpar.";
+        printf("%s\n", erro);
+        exit(1);
+    }
+    
+    fseek(ptr_entrada, 0L, SEEK_SET);
 
     while (fread(dois_bytes, 2, 1, ptr_entrada) == 1) {
         int m[1] = {binExp(dois_bytes[0], chave_privada[1], chave_privada[0])};
