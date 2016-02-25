@@ -55,9 +55,18 @@ int main(int argc, char* argv[]) {
     fseek(ptr_entrada, 0L, SEEK_SET);
 
     while (fread(dois_bytes, 2, 1, ptr_entrada) == 1) {
+        
         int m[1] = {binExp(dois_bytes[0], chave_privada[1], chave_privada[0])};
-        fwrite(m, 1, 1, ptr_saida);
-
+        
+        if(m[0] > 255){
+            char erro [] = "Erro: entrada gera número maior que 255";
+            printf("%s\n", erro);
+            exit(1);
+        }
+        else{
+            fwrite(m, 1, 1, ptr_saida);
+        }
+       
     }
 }
 
